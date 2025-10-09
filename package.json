@@ -1,6 +1,6 @@
 {
   "name": "crunchyroll.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "a nodejs crunchyroll api",
   "main": "main.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "beta-crunchyroll",
     "anime",
     "series",
-    "funimation"
+    "funimation",
+    "streaming"
   ],
   "author": "Mssjim",
   "license": "MIT",
