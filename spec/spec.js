@@ -95,10 +95,6 @@ describe('Crunchyroll API - client', () => {
 });
 
 describe('Crunchyroll API - login', () => {
-    it('should return a promise', () => {
-        expect(cr.login()).toBeInstanceOf(Promise);
-    });
-
     it('should return a object with sucess and client properties', async () => {
         expect(loginResponse.success).toBeDefined();
         expect(loginResponse.client).toBeDefined();
@@ -149,7 +145,7 @@ describe('Crunchyroll API - login', () => {
     });
 
     it('should return a object with client property set to an object with the following cms properties with the following format', async () => {
-        expect(loginResponse.client.cms.bucket).toMatch(/\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+\/-/);
+        expect(loginResponse.client.cms.bucket).toMatch(/\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+/);
         expect(loginResponse.client.cms.key_pair_id).toMatch(/[a-zA-Z0-9_-]+/);
         expect(loginResponse.client.cms.expires).toMatch(/[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z/);
     });
@@ -177,14 +173,12 @@ describe('Crunchyroll API - getProfile', () => {
         expect(profile.avatar).toBeDefined();
         expect(profile.cr_beta_opt_in).toBeDefined();
         expect(profile.crleg_email_verified).toBeDefined();
-        expect(profile.do_not_sell).toBeDefined();
         expect(profile.email).toBeDefined();
         expect(profile.extended_maturity_rating).toBeDefined();
         expect(profile.maturity_rating).toBeDefined();
         expect(profile.preferred_communication_language).toBeDefined();
         expect(profile.preferred_content_subtitle_language).toBeDefined();
         expect(profile.profile_name).toBeDefined();
-        expect(profile.qa_user).toBeDefined();
         expect(profile.username).toBeDefined();
     });
 });

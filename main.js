@@ -35,8 +35,10 @@ async function makeRequest(url) {
 }
 
 async function getToken(email, password) {
+    const Authorization = "Basic " + Buffer.from("xunihvedbt3mbisuhevt:1kIS5dyTvjE0_rqaA3YeAh0bUXUmxW11").toString('base64');
+
     const headers = {
-        'Authorization': "Basic b2VkYXJteHN0bGgxanZhd2ltbnE6OWxFaHZIWkpEMzJqdVY1ZFc5Vk9TNTdkb3BkSnBnbzE=",
+        'Authorization': Authorization,
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
     };
 
@@ -103,6 +105,7 @@ async function authenticate() {
 
 async function login(email, password, locale = 'en-US') {
     client.locale = locale;
+    client.login = { email, password };
     try {
         const getTokenResult = await getToken(email, password);
         if (!getTokenResult.success)
@@ -113,7 +116,6 @@ async function login(email, password, locale = 'en-US') {
             throw new Error(authenticateResult.message + " - Error authenticating.");
         
         client.time = Date.now();
-        client.login = { email, password };
 
         return {
             success: true,
@@ -121,7 +123,6 @@ async function login(email, password, locale = 'en-US') {
             client
         };
     } catch (error) {
-        client.login = { email, password };
         return {
             success: false,
             message: error.message,
